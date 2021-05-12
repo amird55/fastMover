@@ -87,6 +87,6 @@ int GetJstickPos() {
 	} else if (vy < 250) {
 		pos += 10;//top
 	}
-	Serial.println("vx=" + String(vx) + " vy=" + String(vy)+" pos="+String(pos));
+	//Serial.println("vx=" + String(vx) + " vy=" + String(vy)+" pos="+String(pos));
 	return pos;
 }

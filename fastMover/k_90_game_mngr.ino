@@ -6,10 +6,10 @@ short currState;
 
 int BreakLong_min = 1400;
 int BreakLong_max = 2400;
-int LightLong_min = 800;
-int LightLong_max = 1000;
-int LightLong_min_quick = 600;
-int LightLong_max_quick = 800;
+int LightLong_min = 600;
+int LightLong_max = 900;
+int LightLong_min_quick = 400;
+int LightLong_max_quick = 700;
 
 int sectionLong;
 long sectionStartTime;
@@ -46,6 +46,7 @@ void StartGame() {
 	gameScore = 0;
 }
 void FinishGame() {
+	MatOffAll();
 	currState = START_WAITING;
 }
 void gameManager() {
@@ -54,12 +55,14 @@ void gameManager() {
 		FinishGame();
 	} else {
 		int Jpos = GetJstickPos();
-		if (Jpos != CENTER) {
+		if ((!sectionIsBreak)&&(Jpos != CENTER)) {
 			if (PosValue[sectionPosition] == Jpos) {
 				goodAns();
 			} else {
 				wrongAns();
 			}
+			setBreak();
+			MatOffAll();
 		}
 		if (millis() - sectionStartTime >= sectionLong) {
 			if (sectionIsBreak) {
